@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char plaintext[] = "SEND MORE MONEY";
+
+    int key[] =
+    {9,0,1,7,23,15,21,14,11,11,2,8,9};
+
+    int i, j = 0;
+
+    printf("Ciphertext: ");
+
+    for(i=0; plaintext[i]!='\0'; i++)
+    {
+        if(isalpha(plaintext[i]))
+        {
+            int p = toupper(plaintext[i]) - 'A';
+            int c = (p + key[j]) % 26;
+
+            printf("%c", c + 'A');
+            j++;
+        }
+    }
+
+    return 0;
+}
