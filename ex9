@@ -1,0 +1,107 @@
+#include <stdio.h>
+#include <ctype.h>
+
+char m[5][5];
+
+void createMatrix(char key[])
+{
+    int used[26]={0};
+    int r=0,c=0,i;
+    char ch;
+
+    for(i=0;key[i];i++)
+    {
+        ch=toupper(key[i]);
+
+        if(ch=='J')
+            ch='I';
+
+        if(ch>='A' && ch<='Z' && !used[ch-'A'])
+        {
+            used[ch-'A']=1;
+            m[r][c++]=ch;
+
+            if(c==5)
+            {
+                c=0;
+                r++;
+            }
+        }
+    }
+
+    for(i=0;i<26;i++)
+    {
+        if(i==9)
+            continue;
+
+        if(!used[i])
+        {
+            m[r][c++]=i+'A';
+
+            if(c==5)
+            {
+                c=0;
+                r++;
+            }
+        }
+    }
+}
+
+void pos(char x,int *r,int *c)
+{
+    int i,j;
+
+    if(x=='J')
+        x='I';
+
+    for(i=0;i<5;i++)
+        for(j=0;j<5;j++)
+            if(m[i][j]==x)
+            {
+                *r=i;
+                *c=j;
+            }
+}
+
+int main()
+{
+    char key[100], cipher[1000];
+    int i,r1,c1,r2,c2;
+
+    printf("Enter key: ");
+    scanf("%s",key);
+
+    printf("Enter ciphertext without spaces: ");
+    scanf("%s",cipher);
+
+    createMatrix(key);
+
+    printf("Plaintext: ");
+
+    for(i=0;cipher[i];i+=2)
+    {
+        pos(cipher[i],&r1,&c1);
+        pos(cipher[i+1],&r2,&c2);
+
+        if(r1==r2)
+        {
+            printf("%c%c",
+                m[r1][(c1+4)%5],
+                m[r2][(c2+4)%5]);
+        }
+        else if(c1==c2)
+        {
+            printf("%c%c",
+                m[(r1+4)%5][c1],
+                m[(r2+4)%5][c2]);
+        }
+        else
+        {
+            printf("%c%c",
+                m[r1][c2],
+                m[r2][c1]);
+        }
+    }
+
+    return 0;
+}
