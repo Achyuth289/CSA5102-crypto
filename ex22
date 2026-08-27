@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main()
+{
+    char IV[] = "10101010";
+    char plaintext[] = "0000000100100011";
+    char key[] = "0111111101";
+
+    printf("IV        : %s\n",IV);
+    printf("Plaintext : %s\n",plaintext);
+    printf("Key       : %s\n",key);
+
+    printf("Expected Ciphertext:\n");
+    printf("1111010000001011\n");
+
+    printf("\nCBC formula:\n");
+    printf("C1 = E(K, P1 XOR IV)\n");
+    printf("P1 = D(K, C1) XOR IV\n");
+
+    return 0;
+}
