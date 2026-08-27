@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main()
+{
+    printf("CBC Mode Comparison\n\n");
+
+    printf("For security : 3DES\n");
+    printf("For performance : DES\n");
+
+    printf("\nModern recommendation: AES should be preferred\n");
+    printf("for new systems instead of DES/3DES.\n");
+
+    return 0;
+}
