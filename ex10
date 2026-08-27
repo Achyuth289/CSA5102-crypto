@@ -1,0 +1,76 @@
+#include <stdio.h>
+
+char m[5][5]={
+    {'M','F','H','I','K'},
+    {'U','N','O','P','Q'},
+    {'Z','V','W','X','Y'},
+    {'E','L','A','R','G'},
+    {'D','S','T','B','C'}
+};
+
+void pos(char x,int *r,int *c)
+{
+    int i,j;
+
+    if(x=='J')
+        x='I';
+
+    for(i=0;i<5;i++)
+        for(j=0;j<5;j++)
+            if(m[i][j]==x)
+            {
+                *r=i;
+                *c=j;
+            }
+}
+
+void encrypt(char a,char b)
+{
+    int r1,c1,r2,c2;
+
+    pos(a,&r1,&c1);
+    pos(b,&r2,&c2);
+
+    if(r1==r2)
+        printf("%c%c",
+            m[r1][(c1+1)%5],
+            m[r2][(c2+1)%5]);
+
+    else if(c1==c2)
+        printf("%c%c",
+            m[(r1+1)%5][c1],
+            m[(r2+1)%5][c2]);
+
+    else
+        printf("%c%c",
+            m[r1][c2],
+            m[r2][c1]);
+}
+
+int main()
+{
+    char text[]="MUSTSEEYOUOVERCADOGANWESTCOMINGATONCE";
+    int i,n=0;
+    char p[100];
+
+    for(i=0;text[i];i++)
+        p[n++]=text[i];
+
+    printf("Ciphertext: ");
+
+    for(i=0;i<n;i+=2)
+    {
+        char a=p[i];
+        char b=(i+1<n)?p[i+1]:'X';
+
+        if(a==b)
+        {
+            encrypt(a,'X');
+            i--;
+        }
+        else
+            encrypt(a,b);
+    }
+
+    return 0;
+}
