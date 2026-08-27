@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main()
+{
+    int i;
+
+    printf("DES Decryption Key Order:\n");
+
+    for(i=16;i>=1;i--)
+        printf("K%d ",i);
+
+    printf("\n");
+
+    printf("Shift schedule:\n");
+
+    int shift[16] =
+    {1,1,2,2,2,2,2,2,
+     1,2,2,2,2,2,2,1};
+
+    for(i=0;i<16;i++)
+        printf("Round %d : %d shift\n",
+               i+1,shift[i]);
+
+    return 0;
+}
