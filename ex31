@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main()
+{
+    unsigned int X,T,Y;
+
+    printf("Enter X in hexadecimal: ");
+    scanf("%x",&X);
+
+    printf("Enter MAC T in hexadecimal: ");
+    scanf("%x",&T);
+
+    Y = X ^ T;
+
+    printf("Forged second block = %X\n",Y);
+    printf("Forged message = X || (X XOR T)\n");
+    printf("Its CBC-MAC can equal T under the vulnerable construction.\n");
+
+    return 0;
+}
