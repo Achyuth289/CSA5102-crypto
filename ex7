@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char cipher[2000];
+    int freq[26] = {0};
+    int i;
+
+    printf("Enter ciphertext:\n");
+    fgets(cipher, sizeof(cipher), stdin);
+
+    for(i = 0; cipher[i] != '\0'; i++)
+    {
+        if(isalpha(cipher[i]))
+            freq[tolower(cipher[i]) - 'a']++;
+    }
+
+    printf("\nLetter frequencies:\n");
+
+    for(i = 0; i < 26; i++)
+        printf("%c : %d\n", 'A'+i, freq[i]);
+
+    printf("\nUse frequency analysis to map frequent letters to E, T, A, O, I, N...\n");
+
+    return 0;
+}
