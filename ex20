@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main()
+{
+    printf("CBC Error Propagation\n");
+
+    printf("Error in C1:\n");
+    printf("P1 -> completely corrupted\n");
+    printf("P2 -> corresponding bit error\n");
+    printf("P3 onward -> unaffected\n");
+
+    printf("\nECB:\n");
+    printf("Error in one ciphertext block affects only\n");
+    printf("the corresponding plaintext block.\n");
+
+    return 0;
+}
