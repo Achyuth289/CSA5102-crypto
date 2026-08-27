@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+long long powerMod(long long a,
+                   long long e,
+                   long long n)
+{
+    long long result = 1;
+
+    while(e > 0)
+    {
+        if(e % 2 == 1)
+            result = (result*a)%n;
+
+        a = (a*a)%n;
+        e /= 2;
+    }
+
+    return result;
+}
+
+int main()
+{
+    long long n,e,p;
+
+    printf("Enter n: ");
+    scanf("%lld",&n);
+
+    printf("Enter e: ");
+    scanf("%lld",&e);
+
+    printf("Enter plaintext character number (0-25): ");
+    scanf("%lld",&p);
+
+    printf("Ciphertext = %lld\n",
+           powerMod(p,e,n));
+
+    printf("\nAttack: frequency analysis\n");
+
+    return 0;
+}
