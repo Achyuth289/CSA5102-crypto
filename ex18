@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main()
+{
+    int shifts[16] =
+    {1,1,2,2,2,2,2,2,
+     1,2,2,2,2,2,2,1};
+
+    int i;
+
+    printf("DES Subkey Generation\n");
+
+    printf("Initial key = 64 bits\n");
+    printf("After PC-1 = 56 bits\n");
+    printf("C = 28 bits\n");
+    printf("D = 28 bits\n");
+    printf("Each subkey = 48 bits\n\n");
+
+    for(i=0;i<16;i++)
+        printf("Round %2d -> Left shift %d\n",
+               i+1,shifts[i]);
+
+    return 0;
+}
