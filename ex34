@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char text[100];
+    int len, block = 8;
+    int padding;
+
+    printf("Enter plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    len = strlen(text);
+
+    if(text[len-1] == '\n')
+        len--;
+
+    padding = block - (len % block);
+
+    printf("Plaintext length = %d bytes\n", len);
+    printf("Padding required = %d bytes\n", padding);
+
+    if(padding == 0)
+        printf("A complete padding block is added.\n");
+    else
+        printf("Add padding to complete the final block.\n");
+
+    printf("Purpose: unambiguous removal of padding during decryption.\n");
+
+    return 0;
+}
