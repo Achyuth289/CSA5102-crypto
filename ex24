@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+long long gcdExtended(long long a,
+                       long long b,
+                       long long *x,
+                       long long *y)
+{
+    if(b == 0)
+    {
+        *x = 1;
+        *y = 0;
+        return a;
+    }
+
+    long long x1,y1;
+
+    long long g =
+        gcdExtended(b,a%b,&x1,&y1);
+
+    *x = y1;
+    *y = x1 - (a/b)*y1;
+
+    return g;
+}
+
+int main()
+{
+    int p = 59;
+    int q = 61;
+    int e = 31;
+
+    long long phi = (p-1)*(q-1);
+    long long x,y,d;
+
+    gcdExtended(e,phi,&x,&y);
+
+    d = (x % phi + phi) % phi;
+
+    printf("p = %d\n",p);
+    printf("q = %d\n",q);
+    printf("phi(n) = %lld\n",phi);
+    printf("Private key d = %lld\n",d);
+
+    return 0;
+}
