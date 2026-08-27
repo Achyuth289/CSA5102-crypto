@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main()
+{
+    int blockSize = 1024;
+
+    printf("SHA-3 Block Size = %d bits\n",
+           blockSize);
+
+    printf("Track the initially zero capacity lanes.\n");
+    printf("Ignore permutation as specified in the question.\n");
+
+    printf("The exact iteration count depends on the\n");
+    printf("lane mapping and message-block arrangement.\n");
+
+    return 0;
+}
