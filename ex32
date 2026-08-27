@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdint.h>
+
+uint64_t simpleXOR(uint64_t data, uint64_t key)
+{
+    return data ^ key;
+}
+
+int main()
+{
+    uint64_t plaintext, key, ciphertext;
+
+    printf("Enter 64-bit plaintext in hexadecimal: ");
+    scanf("%llx", &plaintext);
+
+    printf("Enter DES key in hexadecimal: ");
+    scanf("%llx", &key);
+
+    ciphertext = simpleXOR(plaintext, key);
+
+    printf("Plaintext  = %016llX\n", plaintext);
+    printf("Key        = %016llX\n", key);
+    printf("Result     = %016llX\n", ciphertext);
+
+    printf("\nDES uses 64-bit blocks and a 56-bit effective key.\n");
+    printf("A production DES implementation requires IP, FP, S-boxes,\n");
+    printf("E expansion, P permutation and the complete 16-round key schedule.\n");
+
+    return 0;
+}
