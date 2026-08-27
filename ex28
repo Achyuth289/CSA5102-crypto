@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+long long modPower(long long a,
+                   long long x,
+                   long long q)
+{
+    long long r = 1;
+
+    while(x > 0)
+    {
+        if(x % 2 == 1)
+            r = (r*a)%q;
+
+        a = (a*a)%q;
+        x /= 2;
+    }
+
+    return r;
+}
+
+int main()
+{
+    long long a,q,x,y;
+    long long A,B,K1,K2;
+
+    printf("Enter public a: ");
+    scanf("%lld",&a);
+
+    printf("Enter public q: ");
+    scanf("%lld",&q);
+
+    printf("Enter Alice secret x: ");
+    scanf("%lld",&x);
+
+    printf("Enter Bob secret y: ");
+    scanf("%lld",&y);
+
+    A = modPower(a,x,q);
+    B = modPower(a,y,q);
+
+    K1 = modPower(B,x,q);
+    K2 = modPower(A,y,q);
+
+    printf("Alice sends: %lld\n",A);
+    printf("Bob sends: %lld\n",B);
+
+    printf("Alice shared key: %lld\n",K1);
+    printf("Bob shared key: %lld\n",K2);
+
+    return 0;
+}
