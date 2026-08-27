@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main()
+{
+    char cipher[1000];
+    int freq[26] = {0};
+    int i;
+
+    printf("Enter ciphertext:\n");
+    fgets(cipher,sizeof(cipher),stdin);
+
+    for(i=0; cipher[i]!='\0'; i++)
+    {
+        if(isalpha(cipher[i]))
+            freq[tolower(cipher[i])-'a']++;
+    }
+
+    printf("\nFrequency table:\n");
+
+    for(i=0;i<26;i++)
+        printf("%c : %d\n",'A'+i,freq[i]);
+
+    printf("\nEnglish frequency order:\n");
+    printf("E T A O I N S H R D L C U M W F G Y P B V K J X Q Z\n");
+
+    printf("\nUse these frequencies to generate candidate substitutions.\n");
+
+    return 0;
+}
