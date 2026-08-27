@@ -1,0 +1,36 @@
+#include <stdio.h>
+
+int gcd(int a,int b)
+{
+    while(b != 0)
+    {
+        int t = a%b;
+        a = b;
+        b = t;
+    }
+
+    return a;
+}
+
+int main()
+{
+    int n,m,g;
+
+    printf("Enter n: ");
+    scanf("%d",&n);
+
+    printf("Enter plaintext block: ");
+    scanf("%d",&m);
+
+    g = gcd(n,m);
+
+    if(g > 1)
+    {
+        printf("Common factor found = %d\n",g);
+        printf("Other factor = %d\n",n/g);
+    }
+    else
+        printf("No useful common factor found.\n");
+
+    return 0;
+}
